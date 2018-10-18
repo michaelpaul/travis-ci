@@ -3,5 +3,10 @@ php:
   - '7.1'
   - '7.2'
   - '7.3'
-install: composer install --optimize-autoloader
+cache:
+  directories:
+    - vendor
+install: 
+  - composer install --optimize-autoloader
+  - composer show
 script: vendor/bin/phpunit
