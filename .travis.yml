@@ -3,9 +3,5 @@ php:
   - '7.0'
   - '7.1'
   - '7.2'
-install:
-  - echo "Installing (vendor) dependencies"
-  - true
-script:
-  - echo "Building the app and running tests"
-  - true
+install: composer install --optimize-autoloader
+script: phpunit
