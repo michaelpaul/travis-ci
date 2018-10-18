@@ -6,7 +6,5 @@ env:
   - DB=sqlite
   - DB=mysql
   - DB=pgsql
-install:
-  - echo "Installing DB: $DB"
-script:
-  - echo "Connecting to $DB"
+install: 'echo "Installing DB: $DB"'
+script: 'echo "Connecting to $DB"'
