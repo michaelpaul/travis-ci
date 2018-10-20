@@ -1,10 +1,9 @@
 language: php
 php:
+  - '5.6'
   - '7.0'
-  - nightly
-install:
-  - echo "Installing dependencies"
-  - true
-script:
-  - echo "Building the app and running tests"
-  - true
+env:
+  - DB=mysql
+  - DB=pgsql
+install: echo Installing $DB
+script: echo Connecting on $DB
