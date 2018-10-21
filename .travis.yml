@@ -1,6 +1,9 @@
 language: php
 php: '7.2'
 services: mysql
+addons:
+  hosts:
+    - db
 install: skip
 script:
   # create account (root's password is empty)
@@ -13,4 +16,4 @@ script:
   - mysql -u app -psecret -e 'SHOW DATABASES'
   - mysql -u app -psecret -e 'CREATE TABLE foo (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT)' ci
   - mysql -u app -psecret -e 'SHOW TABLES' ci
-  - mysql -u app -psecret -e 'DESC foo' ci
+  - mysql -u app -psecret -h db -e 'DESC foo' ci
