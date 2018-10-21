@@ -1,0 +1,2 @@
+CREATE DATABASE `ci`;
+GRANT ALL PRIVILEGES ON `ci`.* TO 'app'@'%';
