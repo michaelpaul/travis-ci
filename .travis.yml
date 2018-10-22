@@ -6,14 +6,10 @@ addons:
     - db
 install: skip
 script:
-  # create account (root's password is empty)
-  - mysql -u root -e "CREATE USER 'app'@'%' IDENTIFIED BY 'secret'"
+  # inline commands
+  - mysql -u root -e "CREATE USER 'app'@'%' IDENTIFIED BY 'ancake'"
   - mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'app'@'%'"
+  - mysql -u root -e "FLUSH PRIVILEGES"
+  - mysql -u root -e 'CREATE DATABASE `ci`'
   # execute a SQL file
-  - mysql -u root < init.sql
-  - mysql -u root -e 'FLUSH PRIVILEGES'
-  # use new account
-  - mysql -u app -psecret -e 'SHOW DATABASES'
-  - mysql -u app -psecret -e 'CREATE TABLE foo (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT)' ci
-  - mysql -u app -psecret -e 'SHOW TABLES' ci
-  - mysql -u app -psecret -h db -e 'DESC foo' ci
+  - mysql -u app -pancake -h db -D ci < init.sql
