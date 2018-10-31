@@ -1,9 +1,9 @@
 language: minimal
 sudo: required
 services: docker
-script: 
-- docker build -t michaelpaul/keep-going .  
-- docker run --name app -d -p 4040:80 michaelpaul/keep-going 
-- docker run --rm michaelpaul/keep-going php -l /app/index.php 
+script:
+- docker build -t michaelpaul/keep-going .
+- docker run --name app -d -p 4040:80 michaelpaul/keep-going
+- docker run --rm michaelpaul/keep-going php -l /app/index.php
 - docker ps -a
 - curl -sS http://localhost:4040 | grep 'Just keep going!'
