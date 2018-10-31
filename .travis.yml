@@ -1,9 +1,17 @@
 language: minimal
 sudo: required
 services: docker
+env:
+  global:
+    - DOCKER_IMAGE=$DOCKER_USER/keep-going
 script:
-- docker build -t michaelpaul/keep-going .
-- docker run --name app -d -p 4040:80 michaelpaul/keep-going
-- docker run --rm michaelpaul/keep-going php -l /app/index.php
+- docker build -t $DOCKER_IMAGE .
+- docker run --name app -d -p 4040:80 $DOCKER_IMAGE
+- docker run --rm $DOCKER_IMAGE php -l /app/index.php
 - docker ps -a
 - curl -sS http://localhost:4040 | grep 'Just keep going!'
+deploy:
+  provider: script
+  script: bash docker_push
+  on:
+    branch: dockerfile
